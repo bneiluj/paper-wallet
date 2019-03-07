@@ -31,8 +31,8 @@ const CONFIG = {
 const web3 = new Web3(new Web3.providers.HttpProvider(CONFIG.provider));
 let ERC20 = new web3.eth.Contract(CONFIG.erc20Abi, CONFIG.erc20ContractAddr);
 
-const AMOUNT_OF_BURN_TO_SEND = CONFIG.testRun ? toWei('1', 'wei') : toWei('10', 'ether')
-const AMOUNT_OF_XDAI_TO_SEND = CONFIG.testRun ? toWei('1', 'wei') : toWei('0.01', 'ether')
+const AMOUNT_OF_BURN_TO_SEND = CONFIG.testRun ? toWei('1', 'wei') : toWei('0', 'ether')
+const AMOUNT_OF_XDAI_TO_SEND = CONFIG.testRun ? toWei('1', 'wei') : toWei('7', 'ether')
 
 function main() {
   let accounts = fs.readFileSync("./addresses.txt").toString().trim().split("\n")
@@ -71,7 +71,7 @@ async function airDrop(accounts) {
       console.log('AMOUNT_OF_XDAI_TO_SEND: ', AMOUNT_OF_XDAI_TO_SEND);
 
       sendXDai(accounts[i], nonce++);
-      sendErc20(accounts[i], nonce++);
+      //sendErc20(accounts[i], nonce++);
     }
 
   })
